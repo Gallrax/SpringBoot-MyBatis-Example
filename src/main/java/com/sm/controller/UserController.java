@@ -21,7 +21,7 @@ public class UserController {
     private UserSer userSer;
 
     @RequestMapping("/userManage")
-    public String index(ModelMap model) {
+    public String userManage(ModelMap model) {
         List<User> users = userSer.findAll();
         System.out.println(users);
         model.addAttribute("users", users);
@@ -38,6 +38,18 @@ public class UserController {
     @RequestMapping("/addUser")
     public String addUser(User user) {
         userSer.addUser(user);
-        return "userManage";
+        return "redirect:/userManage";
+    }
+
+    @RequestMapping("/updateUser")
+    public String updateUser(User user) {
+        userSer.updateUser(user);
+        return "redirect:/userManage";
+    }
+
+    @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
+    public String deleteUser(Integer id) {
+        userSer.deleteUser(id);
+        return "redirect:/userManage";
     }
 }

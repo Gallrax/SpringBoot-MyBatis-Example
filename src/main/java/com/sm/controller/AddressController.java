@@ -4,7 +4,10 @@ import com.sm.entity.Address;
 import com.sm.service.AddressSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -18,8 +21,15 @@ public class AddressController {
     private AddressSer addressSer;
 
     @RequestMapping("/addressManage")
-    public String index() {
+    public String addressManage() {
         List<Address> addresses = addressSer.findAll();
+        return "addressManage";
+    }
+
+    @RequestMapping(value = "/address/{id}", method = RequestMethod.GET)
+    public String findAddressById(@PathVariable Integer id, ModelMap model) {
+        Address address = addressSer.findById(id);
+        model.addAttribute("address", address);
         return "addressManage";
     }
 
@@ -27,5 +37,17 @@ public class AddressController {
     public String addAddress(Address address) {
         addressSer.addAddress(address);
         return "addressManage";
+    }
+
+    @RequestMapping("/updateAddress")
+    public String updateAddress(Address address) {
+        addressSer.updateAddress(address);
+        return "redirect:/addressManage";
+    }
+
+    @RequestMapping(value = "/deleteAddress/{id}", method = RequestMethod.GET)
+    public String deleteAddress(@PathVariable Integer id) {
+        addressSer.deleteAddress(id);
+        return "redirect:/addressManage";
     }
 }
