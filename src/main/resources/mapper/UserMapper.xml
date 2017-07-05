@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sm.dao.UserDao">
+    
+    <resultMap id="resultMap" type="User">
+        <id property="id" column="t_id"/>
+        <result property="name" column="t_name"/>
+        <result property="age" column="t_age"/>
+        <collection property="addresses" column="t_id" ofType="Address"
+                    select="com.sm.dao.AddressDao.findByUserId">
+            <id property="id" column="t_id"/>
+            <result property="name" column="t_name"/>
+        </collection>
+    </resultMap>
+    
+	<select id="findById" parameterType="java.lang.Integer" resultMap="resultMap">
+        select * from t_user where t_id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="resultMap">
+        select * from t_user
+    </select>
+
+    <insert id="addUser" parameterType="User" >
+        <selectKey resultType="java.lang.Integer" order="BEFORE">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into t_user(t_name, t_age) values(#{user.name}, #{user.age})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update t_user set
+        <if test="user.name != null">
+            t_name = #{user.name}
+        </if>
+        <if test="user.age != null">
+            t_age = #{user.name}
+        </if>
+        where t_id = #{user.id}
+    </update>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete t_user where t_id = #{id}
+    </delete>
+
+
+
+
+</mapper>

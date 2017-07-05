@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sm.dao.AddressDao">
+    
+    <resultMap id="resultMap" type="Address">
+        <id property="id" column="t_id"/>
+        <result property="name" column="t_name"/>
+    </resultMap>
+    
+	<select id="findById" parameterType="java.lang.Integer" resultMap="resultMap">
+        select * from t_address where t_id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="resultMap">
+        select * from t_address
+    </select>
+
+    <select id="findByUserId" resultMap="resultMap">
+        select * from t_address where t_user_id = #{userId}
+    </select>
+
+    <insert id="addAddress" parameterType="Address" >
+        <selectKey resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into t_address(t_name) values(#{address.name})
+    </insert>
+
+    <update id="updateAddress" parameterType="Address">
+        update t_address set
+        <if test="address.name != null">
+            t_name = #{address.name}
+        </if>
+        where t_id = #{address.id}
+    </update>
+
+    <delete id="deleteAddress" parameterType="java.lang.Integer">
+        delete t_address where t_id = #{id}
+    </delete>
+
+
+
+
+</mapper>
