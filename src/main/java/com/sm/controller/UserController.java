@@ -5,7 +5,9 @@ import com.sm.service.UserSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -23,6 +25,13 @@ public class UserController {
         List<User> users = userSer.findAll();
         System.out.println(users);
         model.addAttribute("users", users);
+        return "userManage";
+    }
+
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public String findById(@PathVariable Integer id, ModelMap model) {
+        User user = userSer.findById(id);
+        model.addAttribute("user", user);
         return "userManage";
     }
 
