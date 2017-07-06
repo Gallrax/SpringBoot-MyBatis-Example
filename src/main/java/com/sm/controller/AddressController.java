@@ -4,7 +4,7 @@ import com.sm.entity.Address;
 import com.sm.service.AddressSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +27,7 @@ public class AddressController {
     }
 
     @RequestMapping(value = "/address/{id}", method = RequestMethod.GET)
-    public String findAddressById(@PathVariable Integer id, ModelMap model) {
+    public String findAddressById(@PathVariable Integer id, Model model) {
         Address address = addressSer.findById(id);
         model.addAttribute("address", address);
         return "addressManage";

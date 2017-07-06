@@ -4,7 +4,7 @@ import com.sm.entity.User;
 import com.sm.service.UserSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +21,7 @@ public class UserController {
     private UserSer userSer;
 
     @RequestMapping("/userManage")
-    public String userManage(ModelMap model) {
+    public String userManage(Model model) {
         List<User> users = userSer.findAll();
         System.out.println(users);
         model.addAttribute("users", users);
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public String findById(@PathVariable Integer id, ModelMap model) {
+    public String findById(@PathVariable Integer id, Model model) {
         User user = userSer.findById(id);
         model.addAttribute("user", user);
         return "userManage";

@@ -9,7 +9,9 @@
         <tr th:each="user : ${users}">
             <td th:text="${user.name}"></td>
             <td th:text="${user.age}"></td>
+            <td><a href="/addAndUpdateUser?id=">修改</a></td>
         </tr>
     </table>
+    <a href="/addAndUpdateUser">添加</a>
 </body>
 </html>
