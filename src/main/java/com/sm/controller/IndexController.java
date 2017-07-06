@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
     @RequestMapping("/testError")
-    public void error() throws Exception {
-        throw new Exception("----- this is Exception -----");
+    public void error() {
+        throw new RuntimeException("----- this is Exception -----");
     }
 
 }

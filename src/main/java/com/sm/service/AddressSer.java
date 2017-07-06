@@ -11,6 +11,8 @@ public interface AddressSer {
 
     List<Address> findAll();
 
+    List<Address> findByUserId(Integer userId);
+
     Address findById(Integer id);
 
     void addAddress(Address address);

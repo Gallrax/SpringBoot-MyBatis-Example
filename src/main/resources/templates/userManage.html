@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-    <table>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.age}"></td>
-            <td><a href="/addAndUpdateUser?id=">修改</a></td>
-        </tr>
-    </table>
-    <a href="/addAndUpdateUser">添加</a>
+
+<div th:replace="head :: head"></div>
+
+<table>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+        <td><a th:href="@{/user/{id}(id=${user.id})}">修改</a></td>
+        <td><a th:href="@{/deleteUser/{id}(id=${user.id})}">删除</a></td>
+    </tr>
+</table>
+<a href="/user/0">添加</a>
+
+<div th:replace="foot :: foot"></div>
 </body>
 </html>

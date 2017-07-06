@@ -12,6 +12,7 @@ public class ExceptionController {
 
     @ExceptionHandler(value = Exception.class)
     public String error(Model model, Exception e) {
+        e.printStackTrace();
         model.addAttribute("message", e.getMessage());
         return "error";
     }

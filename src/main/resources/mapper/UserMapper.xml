@@ -22,25 +22,22 @@
     </select>
 
     <insert id="addUser" parameterType="User" >
-        <selectKey resultType="java.lang.Integer" order="BEFORE">
-            select LAST_INSERT_ID()
-        </selectKey>
         insert into t_user(t_name, t_age) values(#{user.name}, #{user.age})
     </insert>
 
     <update id="updateUser" parameterType="User">
         update t_user set
         <if test="user.name != null">
-            t_name = #{user.name}
+            t_name = #{user.name},
         </if>
         <if test="user.age != null">
-            t_age = #{user.name}
+            t_age = #{user.age}
         </if>
         where t_id = #{user.id}
     </update>
 
     <delete id="deleteUser" parameterType="java.lang.Integer">
-        delete t_user where t_id = #{id}
+        delete from t_user where t_id = #{id}
     </delete>
 
 

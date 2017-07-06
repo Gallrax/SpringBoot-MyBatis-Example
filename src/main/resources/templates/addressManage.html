@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<div th:replace="head :: head"></div>
+
+<input type="hidden" th:value="${userId}"/>
+<table>
+    <tr th:each="address : ${addresses}">
+        <td th:text="${address.name}"></td>
+        <td><a th:href="@{/address/{userId}/{id}(userId=${userId}, id=${address.id})}">修改</a></td>
+    </tr>
+    <tr>
+        <td><a th:href="@{/address/{userId}/0(userId=${userId})}">添加</a></td>
+    </tr>
+</table>
+
+<div th:replace="foot :: foot"></div>
+</body>
+</html>

@@ -26,6 +26,11 @@ public class AddressSerImpl implements AddressSer{
     }
 
     @Override
+    public List<Address> findByUserId(Integer userId) {
+        return addressDao.findByUserId(userId);
+    }
+
+    @Override
     public Address findById(Integer id) {
         return addressDao.findById(id);
     }
