@@ -8,13 +8,13 @@
 <div th:replace="head :: head"></div>
 <form action="/addAddress" method="post">
     <input type="hidden" name="user.id" th:value="${userId}"/>
-    <div th:if="${address}">
+    <th:block th:if="${address}">
         <input type="hidden" name="id" th:value="${address.id}"/>
         <input type="text" name="name" th:value="${address.name}"/>
-    </div>
-    <div th:unless="${address}">
+    </th:block>
+    <th:block th:unless="${address}">
         <input type="text" name="name"/>
-    </div>
+    </th:block>
     <input type="submit" value="submit"/>
 </form>
 <div th:replace="foot :: foot"></div>
