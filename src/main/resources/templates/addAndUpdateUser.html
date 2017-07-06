@@ -4,11 +4,13 @@
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
-<body>
+<body th:inline="text">
 
 <div th:replace="head :: head"></div>
 
 <form action="/addAndUpdateUser" method="post">
+    <!--使用此种方法(即不使用th:text,使用[(obj.val)])，必须开启内联 即在使用此方式任意外部加 th:inline="text" 看body-->
+    This is [(${user.name})]<br/>
     <th:block th:if="${user}">
         <input type="hidden" name="id" th:value="${user.id}"/><br/>
         name: <input type="text" name="name" th:value="${user.name}"/><br/>

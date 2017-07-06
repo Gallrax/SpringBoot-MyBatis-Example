@@ -8,7 +8,9 @@
 <div th:replace="head :: head"></div>
 <form action="/addAddress" method="post">
     <input type="hidden" name="user.id" th:value="${userId}"/>
-    <th:block th:if="${address}">
+    <th:block th:if="${address}" th:inline="text">
+        <!--使用内联方式，不使用th:text-->
+        this is [(${address.user.name})].address<br/>
         <input type="hidden" name="id" th:value="${address.id}"/>
         <input type="text" name="name" th:value="${address.name}"/>
     </th:block>
