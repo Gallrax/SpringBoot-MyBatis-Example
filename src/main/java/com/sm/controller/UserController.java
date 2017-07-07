@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/7/5.
+ * Created by Gallrax on 2017/7/5.
  */
 @Controller
 public class UserController {

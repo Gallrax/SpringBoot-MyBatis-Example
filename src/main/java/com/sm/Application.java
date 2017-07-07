@@ -4,12 +4,14 @@ import org.apache.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * Created by Administrator on 2017/7/5.
+ * Created by Gallrax on 2017/7/5.
  */
 @SpringBootApplication
 @MapperScan("com.sm.dao")
+@EnableScheduling//开启定时
 public class Application {
 
     private static Logger logger = Logger.getLogger(Application.class);
