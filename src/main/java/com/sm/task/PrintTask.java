@@ -16,7 +16,7 @@ public class PrintTask {
 
     private static Logger logger = Logger.getLogger(PrintTask.class);
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 60000)
     public void pringTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         logger.info("当前时间为："+ sdf.format(new Date()));

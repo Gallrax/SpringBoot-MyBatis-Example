@@ -38,6 +38,12 @@
             <version>1.1.1</version>
         </dependency>
 
+        <!-- 当需要使用AOP时候需要导入此包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>

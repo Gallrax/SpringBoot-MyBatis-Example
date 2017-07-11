@@ -23,7 +23,7 @@ public class IndexController {
     }*/
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
+    protected String login() {
         return "login";
     }
 
