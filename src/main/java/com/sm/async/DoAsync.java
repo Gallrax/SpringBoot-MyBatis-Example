@@ -28,7 +28,7 @@ public class DoAsync {
     }
 
     /**
-     * 异步刷新索引
+     * 异步刷新索引，只能外部调用，内部调用无效
      * @PostConstruct 注解为启动后执行一次
      */
     @PostConstruct
